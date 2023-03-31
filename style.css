@@ -1,0 +1,125 @@
+*{
+    margin: 0;
+    padding: 0;
+    border: 0;
+    outline: none;
+    box-sizing: border-box;
+}
+
+body{
+    height: 100vh;
+    background: linear-gradient(to bottom left, rgb(128, 58, 233), rgb(254, 197, 207));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+}
+
+.container{
+    position: relative;
+    height: 670px;
+    width: 570px;
+    background-color: white;
+    border-radius: 25px;
+}
+
+@media (max-width: 1300px) {
+    .container{
+        width: 570px;
+        height: 670px;
+    }
+}
+
+@media (max-width: 1100px) {
+    .container{
+        width: 454px;
+        height: 554px;
+    }
+}
+
+@media (max-width: 850px) {
+    .container{
+        width: 270px;
+        height: 370px;
+    }
+}
+
+@media (max-width: 400px) {
+    .container{
+        width: 170px;
+        height: 270px;
+    }
+}
+
+.todayDate{
+    margin-left: 110px;
+    margin-top: 25px;
+    font-size: 20px;
+    font-family: Andale Mono, monospace;
+}
+
+.calendarHeader{
+    padding: 12.5px;
+    margin-top: 25px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    border-radius: 12px;
+    height: 50px;
+    width: 62%;
+    background-color: rgb(190, 147, 255);
+}
+.month{
+    font-size: 20px;
+    font-family: Andale Mono, monospace;
+}
+
+.year{
+    font-size: 20px;
+    font-family: Andale Mono, monospace;
+    margin-left: 100px;
+}
+
+.changeYear{
+    background-color: rgb(190, 147, 255);
+    font-size: 20px;
+    font-family: Andale Mono, monospace;
+}
+
+.changeMonth{
+    background-color: rgb(190, 147, 255);
+    font-size: 20px;
+    font-family: Andale Mono, monospace;
+}
+
+td,th{
+    height: 50px;
+    width: 50px;
+    border-radius: 50px;
+    text-align: center;
+    font-size: 20px;
+    font-family: Andale Mono, monospace;
+}
+
+.clickDay{
+    background-color: white;
+    height: 50px;
+    width: 50px;
+    border-radius: 50px;
+    text-align: center;
+    font-size: 20px;
+    font-family: Andale Mono, monospace;
+}
+
+.clickDay:hover{
+    background-color: rgb(190, 147, 255);
+}
+
+table{
+    margin-top: 25px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
