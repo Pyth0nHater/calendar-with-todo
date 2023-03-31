@@ -8,10 +8,16 @@
     <script defer src="script.js"></script>
     <title>Calendar with ToDo</title>
 </head>
-<body onload="updateDate(); setInterval('updateDate()', 1000 ); todayYearMonth()">
+<body onload="updateDate(); setInterval('updateDate(); updateTime()', 1000 ); updateTime(); todayYearMonth()">
+    <div class="headColor">
+        <div class="headName"><strong>ToDo Calendar</strong></div>
+    </div>
     <div class="container">
         <div class="calendarBody">
-            <div class="todayDate"></div>
+            <div class="nowToday">
+                <div class="todayTime"></div>
+                <div class="todayDate"></div>
+            </div>
             <div class="calendarHeader">
                 <span class="month">
                     <button class="changeMonth"></button>

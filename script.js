@@ -27,7 +27,25 @@ function updateDate(){
     let now = new Date();
 
     const todayDate = document.querySelector('.todayDate')
-    todayDate.innerHTML = `${weekday[now.getDay()]}, 0${now.getDate()}.0${now.getMonth()}.${now.getFullYear()}`;
+    let nowWeek = weekday[now.getDay()]
+    let nowDay = now.getDate()
+    let nowMonth = now.getMonth()
+    let nowYear = now.getFullYear()
+    
+    console.log(typeof(nowSeconds))
+    todayDate.innerHTML = `${nowWeek}, ${nowDay}.${nowMonth}.${nowYear}`;
+}
+
+function updateTime(){
+    let now = new Date();
+
+    const todayTime = document.querySelector('.todayTime')
+    let nowHours = now.getHours()
+    let nowMinutes = now.getMinutes()
+    let nowSeconds = now.getSeconds()
+
+    todayTime.innerHTML = `${nowHours}:${nowMinutes}:${nowSeconds}`
+
 }
 
 function todayYearMonth(){
