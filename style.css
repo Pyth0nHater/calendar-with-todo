@@ -17,8 +17,8 @@ body{
 
 .container{
     position: relative;
-    height: 670px;
-    width: 570px;
+    height:700px;
+    width: 500px;
     background-color: white;
     border-radius: 25px;
 }
@@ -52,7 +52,7 @@ body{
 }
 
 .todayDate{
-    margin-left: 110px;
+    margin-left: 80px;
     margin-top: 25px;
     font-size: 20px;
     font-family: Andale Mono, monospace;
@@ -66,7 +66,7 @@ body{
     text-align: center;
     border-radius: 12px;
     height: 50px;
-    width: 62%;
+    width: 70%;
     background-color: rgb(190, 147, 255);
 }
 .month{
