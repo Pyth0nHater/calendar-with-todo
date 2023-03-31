@@ -52,32 +52,32 @@ body{
 }
 
 .todayDate{
-    margin-left: 80px;
+    margin-left: 70px;
     margin-top: 25px;
     font-size: 20px;
     font-family: Andale Mono, monospace;
 }
 
 .calendarHeader{
-    padding: 12.5px;
+    padding-top: 12.5px;
     margin-top: 25px;
     margin-left: auto;
     margin-right: auto;
-    text-align: center;
     border-radius: 12px;
     height: 50px;
-    width: 70%;
+    width: 75%;
     background-color: rgb(190, 147, 255);
 }
 .month{
+    margin-left: 10px;
     font-size: 20px;
     font-family: Andale Mono, monospace;
 }
 
-.year{
+.yearWithButtons{
     font-size: 20px;
     font-family: Andale Mono, monospace;
-    margin-left: 100px;
+    margin-left: 200px;
 }
 
 .changeYear{

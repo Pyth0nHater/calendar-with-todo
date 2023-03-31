@@ -8,17 +8,17 @@
     <script defer src="script.js"></script>
     <title>Calendar with ToDo</title>
 </head>
-<body>
+<body onload="updateDate(); setInterval('updateDate()', 1000 ); todayYearMonth()">
     <div class="container">
         <div class="calendarBody">
-            <div class="todayDate">Sun<br>01.04.2023</div>
+            <div class="todayDate"></div>
             <div class="calendarHeader">
                 <span class="month">
-                    <button class="changeMonth">September</button>
+                    <button class="changeMonth"></button>
                 </span>
-                <span class="year">
+                <span class="yearWithButtons">
                     <button class="changeYear"><</button>
-                        2023
+                        <span class="year"></span>
                     <button class="changeYear">></button>
                 </span>
             </div>
