@@ -9,50 +9,36 @@
     <title>Calendar with ToDo</title>
 </head>
 <body onload="updateDate(); setInterval('updateDate(); updateTime()', 1000 ); updateTime(); todayYearMonth()">
-    <div class="headColor">
-        <div class="headName"><strong>ToDo Calendar</strong></div>
-    </div>
-    <div class="container">
-        <div class="calendarBody">
-            <div class="nowToday">
-                <div class="todayTime"></div>
-                <div class="todayDate"></div>
+    <div class="main">
+        <div class="mainContainer">
+            <div class="headColor">
+                <div class="headName"><strong>ToDo Calendar</strong></div>
             </div>
-            <div class="calendarHeader">
-                <span class="month">
-                    <button class="changeMonth"></button>
-                </span>
-                <span class="yearWithButtons">
-                    <button class="changeYear"><</button>
-                        <span class="year"></span>
-                    <button class="changeYear">></button>
-                </span>
+            <div class="todoList">
+                <div class="notTodo"><strong>Not ToDo's yet!</strong></div>
             </div>
-            <table>
-                <th>Sun</th>
-                <th>Mon</th>
-                <th>Tue</th>
-                <th>Wed</th>
-                <th>Thu</th>
-                <th>Fri</th>
-                <th>Sat</th>
-                <tr>
-                    <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
-                </tr>
-                <tr>
-                    <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
-                </tr>
-                <tr>
-                    <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
-                </tr>
-                <tr>
-                    <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
-                </tr>
-
-
-
-            </table>
         </div>
-    </div>
+        <div class="container">
+            <div class="calendarBody">
+                <div class="today"><strong>Today</strong></div>
+                <div class="nowToday">
+                    <div class="todayTime"></div>
+                    <div class="todayDate"></div>
+                </div>
+                <div class="calendarHeader">
+                    <span class="month">
+                        <button class="changeMonth" onclick="changeMonth()"></button>
+                    </span>
+                    <span class="yearWithButtons">
+                        <button class="changeYear" onclick="changeYearBack()"><</button>
+                            <span class="year"></span>
+                        <button class="changeYear"  onclick="changeYearNext()">></button>
+                    </span>
+                </div>
+                <div class="calendar"></div>
+                <div class="forChangeMonth"></div>
+            </div>
+        </div>
+    </div>    
 </body>
 </html>

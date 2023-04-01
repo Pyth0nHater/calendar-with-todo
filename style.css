@@ -3,66 +3,68 @@
     padding: 0;
     border: 0;
     outline: none;
-    box-sizing: border-box;
 }
 
 body{
     height: 100vh;
     background: linear-gradient(to bottom left, rgb(128, 58, 233), rgb(254, 197, 207));
+    
+}
+
+.main{
     display: flex;
-    align-items: center;
     justify-content: center;
+    align-items: center;
+    width: auto;
+    height: 100vh;
+}
+
+.mainContainer{
+    padding: 7px;
+    padding-top: 5px;
+    display:inline-block;
+    vertical-align: middle;
     
 }
 
 .container{
-    position: relative;
-    height:700px;
+    display:inline-block;
+    vertical-align: middle;
+    height: 650px;
     width: 500px;
     background-color: white;
     border-radius: 25px;
 }
 
-@media (max-width: 1300px) {
-    .container{
-        width: 570px;
-        height: 670px;
-    }
-}
-
-@media (max-width: 1100px) {
-    .container{
-        width: 454px;
-        height: 554px;
-    }
-}
-
-@media (max-width: 850px) {
-    .container{
-        width: 270px;
-        height: 370px;
-    }
-}
-
-@media (max-width: 400px) {
-    .container{
-        width: 170px;
-        height: 270px;
-    }
-}
-
-
 .headColor{
     text-align: center;
-    justify-content: center;
-    border: solid 2px;
+    border: solid 3px white;
     border-radius: 25px;
-    height: 100px;
-    width: 50%;
+    height: 94px;
+    width: 800px;
+    background: linear-gradient(to top right, rgb(128, 58, 233), rgb(254, 197, 207));
+}
+
+.todoList{
+    margin-top: 7px;
+    border: solid 3px white;
+    border-radius: 25px;
+    height: 535px;
+    width: 800px;
+    background-color: white;
 }
 
 .headName{
+    color: white;
     padding-top: 30px;
+    font-size: 35px;
+    font-family: Andale Mono, monospace;
+}
+
+.today{
+    margin-top: 40px;
+    text-align: center;
+    justify-content: center;
     font-size: 35px;
     font-family: Andale Mono, monospace;
 }
@@ -72,27 +74,27 @@ body{
 }
 
 .todayTime{
-    margin-top: 25px;
-    font-size: 30px;
+    margin-top: 10px;
+    font-size: 32px;
     font-family: Andale Mono, monospace;
 }
 
 .todayDate{
     margin-top: 5px;
-    font-size: 20px;
+    font-size: 27px;
     font-family: Andale Mono, monospace;
 }
 
 
 .calendarHeader{
-    padding-top: 12.5px;
+    padding-top: 14px;
     margin-top: 40px;
     margin-left: auto;
     margin-right: auto;
     border-radius: 12px;
-    height: 50px;
+    height: 40px;
     width: 75%;
-    background-color: rgb(190, 147, 255);
+    background: linear-gradient(to bottom left, rgb(128, 58, 233), rgb(254, 197, 207));
 }
 .month{
     margin-left: 10px;
@@ -101,19 +103,22 @@ body{
 }
 
 .yearWithButtons{
+    color:white;
     font-size: 20px;
     font-family: Andale Mono, monospace;
     margin-left: 200px;
 }
 
 .changeYear{
-    background-color: rgb(190, 147, 255);
+    background: none;
+    color:white;
     font-size: 20px;
     font-family: Andale Mono, monospace;
 }
 
 .changeMonth{
-    background-color: rgb(190, 147, 255);
+    color:white;
+    background: none;
     font-size: 20px;
     font-family: Andale Mono, monospace;
 }
@@ -138,7 +143,7 @@ td,th{
 }
 
 .clickDay:hover{
-    background-color: rgb(190, 147, 255);
+    background-color: rgb(254, 197, 207);
 }
 
 table{
@@ -149,3 +154,21 @@ table{
 }
 
 
+.notTodo{
+    margin-top: 30%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 30px;
+    font-family: Andale Mono, monospace;
+}
+
+.forChangeMonth{
+    display: none;
+    height: 300px;
+    width: 300px;
+    border-radius: 24px;
+    background-color: white;
+    font-size: 30px;
+    font-family: Andale Mono, monospace;
+}
