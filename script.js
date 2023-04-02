@@ -137,16 +137,19 @@ function changeMonth(){
     months.forEach(element => {
         const monthButtons = document.createElement('button')
         monthButtons.className = 'clickMonth'
-        monthButtons.onclick = addEventListener('click',choseMonth())
+        monthButtons.id = element
         monthButtons.innerHTML = element
         monthListForCahnge.append(monthButtons)
+        monthButtons.onclick = addEventListener('click',()=>{
+            console.log(monthButtons.id)
+        })
     });
     monthListForCahnge.style.display = "block";
     document.querySelector('.calendar').style.display = "none";
 }
 
 function choseMonth(){
-
+    
 }
 
 // const days = document.querySelectorAll('td')
