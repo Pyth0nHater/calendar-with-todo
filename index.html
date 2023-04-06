@@ -8,14 +8,21 @@
     <script defer src="script.js"></script>
     <title>Calendar with ToDo</title>
 </head>
-<body onload="updateDate(); setInterval('updateDate(); updateTime()', 1000 ); updateTime(); todayYearMonth()">
+<body onload="updateDate(); setInterval('updateDate(); updateTime()', 1000 ); updateTime(); todayYearMonth();">
     <div class="main">
         <div class="mainContainer">
             <div class="headColor">
                 <div class="headName"><strong>ToDo Calendar</strong></div>
             </div>
             <div class="todoList">
-                <div class="notTodo"><strong>Not ToDo's yet!</strong></div>
+                <div class="newTodo">
+                    <input class="todoInput" type="text">
+                    <button class="addTodo" onclick="addTodo()">+</button>
+                </div>
+                <div class="list">
+
+                </div>
+                <!-- <div class="notTodo"><strong>Not ToDo's yet!</strong></div> -->
             </div>
         </div>
         <div class="container">
