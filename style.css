@@ -42,7 +42,7 @@ body{
     border-radius: 25px;
     height: 94px;
     width: 800px;
-    background: linear-gradient(to top right, rgb(128, 58, 233), rgb(254, 197, 207));
+    background: none;
 }
 
 .todoList{
@@ -103,8 +103,7 @@ body{
 }
 
 .yearWithButtons{
-    
-    margin-left: 140px;
+    margin-left: 160px;
     color:white;
     font-size: 20px;
     font-family: Andale Mono, monospace;
@@ -223,9 +222,9 @@ table{
 }
 
 .list{
-    margin-top: 10px;
-    margin-left: 30px;
+    margin-top: 20px;
     border: 2px solid;
+    border-radius: 30px;
     height: 400px;
     width: 700px;
     overflow-y: scroll;
@@ -236,3 +235,20 @@ table{
     width: 0;
 }
 
+.totalTodoList{
+    margin-top: 20px;
+    margin-left: 40px;
+}
+
+.todos{
+    padding: 10px;
+    margin-top: 20px;
+    margin-left: 20px;
+    height: 38px;
+    width: 602px;
+    border-radius: 18px;
+    font-size: 30px;
+    color: white;
+    font-family: Andale Mono, monospace;
+    background-color: rgb(254, 197, 207);
+}

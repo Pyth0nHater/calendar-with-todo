@@ -27,7 +27,8 @@ let now = new Date();
 let yearForChange = now.getFullYear()
 let monthForChange = now.getMonth()
 
-
+let totalList = []
+let dayList = []
 
 function updateDate(){
     let now = new Date();
@@ -89,9 +90,9 @@ function createCalendar(elem, year, month){
          d.getMonth() == now.getMonth() && 
          d.getFullYear() == now.getFullYear() && 
          d.getDate() == now.getDate()){
-            table += '<td>' + `<button class="clickDay" id="${d.getDate()}.${d.getMonth()}.${d.getFullYear()}"onclick ="choseDate()"; style=" background: linear-gradient(to bottom left, rgb(128, 58, 233), rgb(254, 197, 207));">` + d.getDate() + '</button>' + '</td>'
+            table += '<td>' + `<button class="clickDay" id="${d.getDate()}${d.getMonth()}${d.getFullYear()}"onclick ="addTodo(this.id,totalList,dayList)"; style=" background: linear-gradient(to bottom left, rgb(128, 58, 233), rgb(254, 197, 207));">` + d.getDate() + '</button>' + '</td>'
         }else{
-        table += '<td>' + `<button class="clickDay" id="${d.getDate()}.${d.getMonth()}.${d.getFullYear()}" onclick ="choseDate()" >` + d.getDate() + '</button>' + '</td>'
+        table += '<td>' + `<button class="clickDay" id="${d.getDate()}${d.getMonth()}${d.getFullYear()}" onclick ="addTodo(this.id,totalList,dayList)" >` + d.getDate() + '</button>' + '</td>'
         }
         if(getDay(d) % 7 == 6){
            table+='</tr><tr>'
@@ -152,24 +153,35 @@ function changeMonth(){
     document.querySelector('.calendar').style.display = "none";
 }
 
-function choseDate(){
-    let date = event.target.id.split('.')
-    date[0] = date[0].length == 1 ? '0' + date[0] : date[0]
-    date[1] = Number(date[1])+1
-    date[1] = String(date[1]).length == 1 ? '0' + String(date[1]) : String(date[1])
-    date = date.join('.')
-    alert(date)
-}
 
-function addTodo(){
-    const list = document.querySelector('.list')
-    const input = document.querySelector('.todoInput')
-    const todos = document.createElement('div')
-    let datee = choseDate()
-    console.log(datee)
-    todos.innerHTML = input.value
-    list.append(todos)
-    input.value = ""
+
+function addTodo(id,totalList,dayList){
+    
+    const todoList = document.querySelector('.todoList')
+    const totalTodoList = document.createElement('div')
+    totalTodoList.className = "totalTodoList"
+    totalTodoList.className = "totalTodoList"
+    todoList.append(totalTodoList)
+
+    const input = document.createElement('input')
+    input.className = "todoInput"
+
+    const list = document.createElement('div')
+    list.className = "list"
+
+    const buttonForAdd = document.createElement('button')
+    buttonForAdd.className = "addTodo"
+    buttonForAdd.innerHTML = "+"
+    buttonForAdd.onclick = () => {
+        const todos = document.createElement('div')
+        todos.innerHTML = input.value 
+        todos.className = "todos"
+        list.append(todos)
+        input.innerHTML = ""
+        return input.innerHTML
+    }
+
+    totalTodoList.append(input,buttonForAdd,list)
 }
 
 createCalendar('.calendar', yearForChange, monthForChange)
