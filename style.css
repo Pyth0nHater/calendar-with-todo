@@ -223,7 +223,6 @@ table{
 
 .list{
     margin-top: 20px;
-    border: 2px solid;
     border-radius: 30px;
     height: 400px;
     width: 700px;
@@ -251,4 +250,25 @@ table{
     color: white;
     font-family: Andale Mono, monospace;
     background-color: rgb(254, 197, 207);
+}
+
+.messageChooseDate{
+    align-items: center;
+    justify-content: center;
+    font-size: 30px;
+    font-family: Andale Mono, monospace;
+    display: none;
+    margin-top: 230px;
+    margin-left: 150px;
+}
+
+.triangle{
+    width: 20px;
+    height: 20px;
+    border-top: 2px solid purple;
+    border-right: 2px solid purple;
+    margin: 16px 0 0 10px;
+    transform: rotate(45deg);
+    display: inline-block;
+    transition: 1s;
 }
