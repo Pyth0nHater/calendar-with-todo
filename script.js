@@ -23,9 +23,10 @@ const weekday = [
     "Sat"
 ];
 
-let now = new Date();
+let dateWithTodo = []
+let now = new Date()
 let yearForChange = now.getFullYear()
-let monthForChange
+let monthForChange = now.getMonth()
 
 
 function updateDate(){
@@ -87,19 +88,25 @@ function createCalendar(elem, year, month){
         if(
          d.getMonth() == now.getMonth() && 
          d.getFullYear() == now.getFullYear() && 
-         d.getDate() == now.getDate()){
-
+         d.getDate() == now.getDate())
+         {
             table += '<td>' + `<button class="clickDay" id="
             ${String(d.getDate()).length == 1 ? '0' + String(d.getDate()) : String(d.getDate())}.${String(d.getMonth()+1).length == 1 ? '0' + String(d.getMonth()+1) : String(d.getMonth()+1)}.${d.getFullYear()}
             "onclick ="addDate(this.id)"; style=" background: linear-gradient(to bottom left, rgb(128, 58, 233), rgb(254, 197, 207));">` + d.getDate() + '</button>' + '</td>'
-        }else{
+        }else if(dateWithTodo.includes(`${String(d.getDate()).length == 1 ? '0' + String(d.getDate()) : String(d.getDate())}.${String(d.getMonth()+1).length == 1 ? '0' + String(d.getMonth()+1) : String(d.getMonth()+1)}.${d.getFullYear()}`))
+        {
+            table += '<td>' + `<button class="clickDay" id="
+            ${String(d.getDate()).length == 1 ? '0' + String(d.getDate()) : String(d.getDate())}.${String(d.getMonth()+1).length == 1 ? '0' + String(d.getMonth()+1) : String(d.getMonth()+1)}.${d.getFullYear()}
+            "onclick ="addDate(this.id)"; style="color: red">` + d.getDate() + '</button>' + '</td>'
+        }
+        else{
         table += '<td>' + `<button class="clickDay" id="
             ${String(d.getDate()).length == 1 ? '0' + String(d.getDate()) : String(d.getDate())}.${String(d.getMonth()+1).length == 1 ? '0' + String(d.getMonth()+1) : String(d.getMonth()+1)}.${d.getFullYear()}"
             onclick ="addDate(this.id)" >` + d.getDate() + '</button>' + '</td>'
         }
         if(getDay(d) % 7 == 6){
            table+='</tr><tr>'
-        }   
+        }  
         d.setDate(d.getDate()+1)
     }
 
@@ -115,7 +122,6 @@ function changeYearBack(){
     yearForChange--
     const todayYear = document.querySelector('.year')
     todayYear.innerHTML = `${yearForChange}`
-    console.log(monthForChange)
     createCalendar('.calendar', yearForChange, monthForChange)
 }
 
@@ -123,7 +129,6 @@ function changeYearNext(){
     yearForChange++
     const todayYear = document.querySelector('.year')
     todayYear.innerHTML = `${yearForChange}`
-    console.log(monthForChange)
     createCalendar('.calendar', yearForChange, monthForChange)
 }
 
@@ -136,19 +141,18 @@ function getDay(date){
 
 const monthListForCahnge = document.querySelector('.forChangeMonth')
 const buttonDivs = document.createElement('div')
-function funcForMonth(id){
-    document.querySelector('.forChangeMonth').style.display = 'none';
-    document.querySelector('.calendar').style.display = 'block'
-    console.log(id)
-    return id
-}
 months.forEach(element => {
     const buttonMnth = document.createElement('button')
     buttonMnth.className = "clickMonth"
     buttonMnth.innerHTML = element
     buttonMnth.id = months.indexOf(element)
-    buttonMnth.onclick = funcForMonth(this.id)
-    createCalendar('.calendar', yearForChange, monthForChange)
+    buttonMnth.addEventListener('click', ()=>{
+        document.querySelector('.forChangeMonth').style.display = 'none';
+        document.querySelector('.calendar').style.display = 'block'
+        monthForChange =  event.target.id
+        document.querySelector('.changeMonth').innerHTML = months[monthForChange]
+        createCalendar('.calendar', yearForChange, monthForChange)
+    })
     buttonDivs.append(buttonMnth)
 });
 monthListForCahnge.append(buttonDivs)
@@ -163,9 +167,37 @@ function addDate(id){
     const todoInput = document.querySelector('.todoInput')
     const todo = document.createElement('div')
     todo.className = "todos"
+    todo.id = ' '+id.replace('\n','').trim()
     if(todoInput.value.trim() != ""){
-    todo.innerHTML = id +" "+ todoInput.value
+    todo.innerHTML = id.replace('\n','').trim() +" "+ todoInput.value
+    const removeTodo = document.createElement('button')
+
+    const icon = document.createElement('img')
+    icon.style.height="30px"
+    icon.id=' '+id.replace('\n','').trim()
+    icon.src="https://cdn-icons-png.flaticon.com/512/3976/3976961.png"
+
+    const complete = document.createElement('input')
+    complete.type="checkbox"
+    complete.id=' '+id.replace('\n','').trim()
+
+    removeTodo.append(complete)
+    removeTodo.append(icon)
+    
+    complete.addEventListener('change', ()=>{
+        todo.style.setProperty("text-decoration", "line-through");
+        dateWithTodo.splice(dateWithTodo.indexOf((event.target.id).trim()), 1);
+        createCalendar('.calendar', yearForChange, monthForChange)
+    })
+
+    icon.addEventListener('click', ()=>{
+        document.getElementById(event.target.id).remove()
+        createCalendar('.calendar', yearForChange, monthForChange)
+    })
+
+    todo.append(removeTodo)
     list.append(todo)
+
     todoInput.value = ""
     const messageChooseDate = document.querySelector('.messageChooseDate')
     messageChooseDate.style.display = "none"
@@ -174,7 +206,8 @@ function addDate(id){
     totalTodoList.style.display = "block"
 
     const day = document.getElementById(id)
-    day.style.color = "red"
+    dateWithTodo.push(id.replace('\n','').trim())
+    createCalendar('.calendar', yearForChange, monthForChange)
     }
 }
 
