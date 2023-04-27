@@ -14,18 +14,18 @@ let months = [
 ]
 
 const weekday = [
-    "Sunday",
-    "Monday",
-    "Tuesday",
-    "Wednesday",
-    "Thursday",
-    "Friday",
-    "Saturday"
+    "Sun",
+    "Mon",
+    "Tue",
+    "Wed",
+    "Thu",
+    "Fri",
+    "Sat"
 ];
 
 let now = new Date();
 let yearForChange = now.getFullYear()
-let monthForChange = now.getMonth()
+let monthForChange
 
 
 function updateDate(){
@@ -88,6 +88,7 @@ function createCalendar(elem, year, month){
          d.getMonth() == now.getMonth() && 
          d.getFullYear() == now.getFullYear() && 
          d.getDate() == now.getDate()){
+
             table += '<td>' + `<button class="clickDay" id="
             ${String(d.getDate()).length == 1 ? '0' + String(d.getDate()) : String(d.getDate())}.${String(d.getMonth()+1).length == 1 ? '0' + String(d.getMonth()+1) : String(d.getMonth()+1)}.${d.getFullYear()}
             "onclick ="addDate(this.id)"; style=" background: linear-gradient(to bottom left, rgb(128, 58, 233), rgb(254, 197, 207));">` + d.getDate() + '</button>' + '</td>'
@@ -114,6 +115,7 @@ function changeYearBack(){
     yearForChange--
     const todayYear = document.querySelector('.year')
     todayYear.innerHTML = `${yearForChange}`
+    console.log(monthForChange)
     createCalendar('.calendar', yearForChange, monthForChange)
 }
 
@@ -121,6 +123,7 @@ function changeYearNext(){
     yearForChange++
     const todayYear = document.querySelector('.year')
     todayYear.innerHTML = `${yearForChange}`
+    console.log(monthForChange)
     createCalendar('.calendar', yearForChange, monthForChange)
 }
 
@@ -133,29 +136,27 @@ function getDay(date){
 
 const monthListForCahnge = document.querySelector('.forChangeMonth')
 const buttonDivs = document.createElement('div')
-monthListForCahnge.append(buttonDivs)
+function funcForMonth(id){
+    document.querySelector('.forChangeMonth').style.display = 'none';
+    document.querySelector('.calendar').style.display = 'block'
+    console.log(id)
+    return id
+}
 months.forEach(element => {
     const buttonMnth = document.createElement('button')
     buttonMnth.className = "clickMonth"
     buttonMnth.innerHTML = element
-    const funcForMonth = (monthForChange) =>{
-        monthForChange = event.target.innerHTML;
-        document.querySelector('.forChangeMonth').style.display = 'none';
-        document.querySelector('.calendar').style.display = 'block'
-        createCalendar('.calendar', yearForChange, months.indexOf(event.target.innerHTML))
-        todayMonth = document.querySelector('.changeMonth').innerHTML = `${event.target.innerHTML}`
-        return monthForChange
-    }
-    buttonMnth.onclick = funcForMonth
+    buttonMnth.id = months.indexOf(element)
+    buttonMnth.onclick = funcForMonth(this.id)
+    createCalendar('.calendar', yearForChange, monthForChange)
     buttonDivs.append(buttonMnth)
 });
+monthListForCahnge.append(buttonDivs)
 
 function changeMonth(){
     monthListForCahnge.style.display = "block";
     document.querySelector('.calendar').style.display = "none";
 }
-
-
 
 function addDate(id){
     const list = document.querySelector('.list')
@@ -187,7 +188,3 @@ function addTodo(id){
     messageChooseDate.style.display = "block"
     }
 }
-
-createCalendar('.calendar', yearForChange, monthForChange)
-
-
