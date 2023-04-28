@@ -159,11 +159,12 @@ table{
 
 
 .notTodo{
-    margin-top: 30%;
+    margin-left: -10%;
+    margin-top: 18%;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 30px;
+    font-size: 40px;
     font-family: Andale Mono, monospace;
 }
 
@@ -225,7 +226,7 @@ table{
     margin-top: 20px;
     border-radius: 30px;
     height: 400px;
-    width: 700px;
+    width: 800px;
     overflow-y: scroll;
 }
 
@@ -241,15 +242,13 @@ table{
 
 .todos{
     padding: 10px;
-    margin-top: 20px;
-    margin-left: 20px;
-    height: 38px;
-    width: 602px;
-    border-radius: 18px;
+    width:700px;
+    border-radius: 0px 20px 20px 20px;
     font-size: 30px;
     color: white;
     font-family: Andale Mono, monospace;
     background-color: rgb(254, 197, 207);
+    word-wrap: break-word;
 }
 
 .messageChooseDate{
@@ -272,3 +271,15 @@ table{
     display: inline-block;
     transition: 1s;
 }
+
+.todoDate{
+    padding: 10px;
+    margin-top: 10px;
+    width:170px;
+    border-radius: 20px 20px 0px 0px;
+    font-size: 30px;
+    color: white;
+    font-family: Andale Mono, monospace;
+    background-color: rgb(249, 172, 186);
+}
+

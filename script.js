@@ -28,6 +28,16 @@ let now = new Date()
 let yearForChange = now.getFullYear()
 let monthForChange = now.getMonth()
 
+function notTodos(){
+    const notTodos = document.createElement('div')
+    notTodos.className ="notTodo"
+    notTodos.innerHTML="<strong>NOT TODO's YET!</strong>"
+    document.querySelector('.list').append(notTodos)
+}
+
+function removeNotTodos(){
+    document.querySelector('.notTodo').remove()
+}
 
 function updateDate(){
     let now = new Date();
@@ -97,7 +107,7 @@ function createCalendar(elem, year, month){
         {
             table += '<td>' + `<button class="clickDay" id="
             ${String(d.getDate()).length == 1 ? '0' + String(d.getDate()) : String(d.getDate())}.${String(d.getMonth()+1).length == 1 ? '0' + String(d.getMonth()+1) : String(d.getMonth()+1)}.${d.getFullYear()}
-            "onclick ="addDate(this.id)"; style="color: red">` + d.getDate() + '</button>' + '</td>'
+            "onclick ="addDate(this.id)"; style="background-color: rgba(223, 111, 111, 0.4)">` + d.getDate() + '</button>' + '</td>'
         }
         else{
         table += '<td>' + `<button class="clickDay" id="
@@ -165,59 +175,96 @@ function changeMonth(){
 function addDate(id){
     const list = document.querySelector('.list')
     const todoInput = document.querySelector('.todoInput')
-    const todo = document.createElement('div')
-    todo.className = "todos"
-    todo.id = ' '+id.replace('\n','').trim()
+    const todos = document.createElement('div')
+    todos.id = ' '+id.replace('\n','').trim()
+    todos.style.color="white"
+
+    const todoValue = document.createElement('div')
+    todoValue.className = "todos"
+    todoValue.id = ' '+id.replace('\n','').trim()
     if(todoInput.value.trim() != ""){
-    todo.innerHTML = id.replace('\n','').trim() +" "+ todoInput.value
-    const removeTodo = document.createElement('button')
+        
+        const todoDate = document.createElement('div')
+        todoDate.className="todoDate"
+        todoDate.innerHTML = id
+        todoValue.innerHTML = todoInput.value + '<br>'
+        
+        const removeTodo = document.createElement('button')
+        removeTodo.style.cssText=`
+        background: none;
+        margin-left: 640px;
+        `
+        const icon = document.createElement('img')
+        icon.id=' '+id.replace('\n','').trim()
+        icon.src="https://cdn-icons-png.flaticon.com/512/484/484662.png"
+        icon.style.cssText=`
+        padding:0;
+        height:30px;
+        width:30px; 
+        `
+        const complete = document.createElement('input')
+        complete.type="checkbox"
+        complete.id=' '+id.replace('\n','').trim()
 
-    const icon = document.createElement('img')
-    icon.style.height="30px"
-    icon.id=' '+id.replace('\n','').trim()
-    icon.src="https://cdn-icons-png.flaticon.com/512/3976/3976961.png"
+        complete.style.cssText=`
+        width:28px;
+        height:28px;
+        `
+        
+        removeTodo.append(complete)
+        removeTodo.append(icon)
+        
 
-    const complete = document.createElement('input')
-    complete.type="checkbox"
-    complete.id=' '+id.replace('\n','').trim()
+        complete.addEventListener('change', function(){
+            if (this.checked) {
+                todoValue.style.setProperty("text-decoration", "line-through");
+                dateWithTodo.splice(dateWithTodo.indexOf((event.target.id).trim()), 1);
+                createCalendar('.calendar', yearForChange, monthForChange)
+            } else {
+                todoValue.style.setProperty("text-decoration", "none");
+                dateWithTodo.push(id.replace('\n','').trim())
+                createCalendar('.calendar', yearForChange, monthForChange)
+            }
+        })
 
-    removeTodo.append(complete)
-    removeTodo.append(icon)
-    
-    complete.addEventListener('change', ()=>{
-        todo.style.setProperty("text-decoration", "line-through");
-        dateWithTodo.splice(dateWithTodo.indexOf((event.target.id).trim()), 1);
+        icon.addEventListener('click', ()=>{
+            document.getElementById(event.target.id).remove()
+            dateWithTodo.splice(dateWithTodo.indexOf((event.target.id).trim()), 1);
+            if(dateWithTodo.length == 0){
+                notTodos();
+            }
+            createCalendar('.calendar', yearForChange, monthForChange)
+        })
+
+        todos.append(todoDate)
+        todos.append(todoValue)
+        todoValue.append(removeTodo)
+
+        list.append(todos)
+
+        todoInput.value = ""
+        const messageChooseDate = document.querySelector('.messageChooseDate')
+        messageChooseDate.style.display = "none"
+
+        const totalTodoList = document.querySelector('.totalTodoList')
+        totalTodoList.style.display = "block"
+
+        const day = document.getElementById(id)
+        dateWithTodo.push(id.replace('\n','').trim())
+        if (document.querySelector('.notTodo') !== null){
+            removeNotTodos()
+        }
         createCalendar('.calendar', yearForChange, monthForChange)
-    })
-
-    icon.addEventListener('click', ()=>{
-        document.getElementById(event.target.id).remove()
-        createCalendar('.calendar', yearForChange, monthForChange)
-    })
-
-    todo.append(removeTodo)
-    list.append(todo)
-
-    todoInput.value = ""
-    const messageChooseDate = document.querySelector('.messageChooseDate')
-    messageChooseDate.style.display = "none"
-
-    const totalTodoList = document.querySelector('.totalTodoList')
-    totalTodoList.style.display = "block"
-
-    const day = document.getElementById(id)
-    dateWithTodo.push(id.replace('\n','').trim())
-    createCalendar('.calendar', yearForChange, monthForChange)
+        }
     }
-}
 
-function addTodo(id){    
-    const todoInput = document.querySelector('.todoInput')
-    if(todoInput.value.trim() != ""){
-    const totalTodoList = document.querySelector('.totalTodoList')
-    totalTodoList.style.display = "none"
+    function addTodo(id){    
+        const todoInput = document.querySelector('.todoInput')
+        if(todoInput.value.trim() != ""){
+        const totalTodoList = document.querySelector('.totalTodoList')
+        totalTodoList.style.display = "none"
 
-    const messageChooseDate = document.querySelector('.messageChooseDate')
-    messageChooseDate.style.display = "block"
-    }
+        const messageChooseDate = document.querySelector('.messageChooseDate')
+        messageChooseDate.style.display = "block"
+        }
 }
