@@ -1,1 +1,1 @@
-Hi user, it's my first github project - "Calendar with Todo list". I'm use only js/html/css.
+Hi user, it's my first github project - "Calendar with Todo list". By using only js/html/css.
