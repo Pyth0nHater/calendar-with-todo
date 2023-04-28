@@ -1,4 +1,4 @@
 
-#calendar-with-todo
+<h1>calendar-with-todo</h1>
 Hi user, it's mine first project. By using only js/html/css.
 ![Иллюстрация к проекту](https://github.com/Pyth0nHater/calendar-with-todo/blob/main/preview.jpg)
